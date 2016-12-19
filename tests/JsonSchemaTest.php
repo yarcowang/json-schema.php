@@ -1,11 +1,11 @@
 <?php
-
 /**
  * Project: json-schema.php
  * User: yarco <yarco.wang@gmail.com>
  * Date: 12/19/16
  * Time: 2:50 PM
  */
+
 class JsonSchemaTest extends PHPUnit_Framework_TestCase
 {
     protected static $invalidJsonSchemaData = "null";
@@ -52,7 +52,8 @@ EOF;
     public function testCreateJsonSchema()
     {
         $obj = \Yarco\JsonSchema\JsonSchema::from(self::$validJsonSchemaData);
-        $this->assertInstanceOf(\Yarco\JsonSchema\JsonSchema::class);
+        $this->assertInstanceOf(\Yarco\JsonSchema\JsonSchema::class, $obj);
+
         $obj = \Yarco\JsonSchema\JsonSchema::from(self::$invalidJsonSchemaData);
     }
 }

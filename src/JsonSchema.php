@@ -15,17 +15,29 @@ class JsonSchema
 {
     protected $_schema;
 
-    protected function __construct($jsonSchemaData)
+    protected function __construct($jsonSchema)
     {
-        $this->_schema = $jsonSchemaData;
+        $this->_schema = $jsonSchema;
     }
 
-    public static function from($jsonSchemaData)
+    public static function from(string $jsonSchemaData)
     {
-        if (!is_array($jsonSchemaData) && !is_object($jsonSchemaData)) {
+        $jsonSchema = json_decode($jsonSchemaData);
+
+        if (!is_array($jsonSchema) && !is_object($jsonSchema)) {
             throw new InvalidSchemaException("invalid json data, must be array or object");
         }
 
-        return new self($jsonSchemaData);
+        return new self($jsonSchema);
+    }
+
+    public static function fromFile(string $filename)
+    {
+        return self::from(file_get_contents($filename));
+    }
+
+    public function validate()
+    {
+
     }
 }
